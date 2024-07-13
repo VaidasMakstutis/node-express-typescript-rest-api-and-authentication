@@ -1,1 +1,1 @@
-# node-express-typescript-rest-api-and-authentication
+# Build a REST API With Node, Express, TypeScript & MongoDB + Authentication
