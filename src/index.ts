@@ -4,8 +4,11 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compression from "compression";
 import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 const app = express();
+dotenv.config();
 
 app.use(
   cors({
@@ -22,7 +25,19 @@ app.get("/", (req, res) => {
 });
 
 const server = http.createServer(app);
+const port = process.env.PORT;
+const url = process.env.MONGO_URL;
 
-server.listen(8080, () => {
-  console.log("Server running on http://localhost:8080/");
+server.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}/`);
 });
+
+mongoose.Promise = Promise;
+mongoose
+  .connect(url)
+  .then(() => {
+    console.log("App is connected to database");
+  })
+  .catch(error => {
+    console.log(error);
+  });
