@@ -26,10 +26,6 @@ app.get("/", (req: express.Request, res: express.Response) => {
   res.status(234).send("Hello World!");
 });
 
-app.get("/users", (req: express.Request, res: express.Response) => {
-  res.status(234).send("There are list of users");
-});
-
 const server = http.createServer(app);
 const port = process.env.PORT;
 const url = process.env.MONGO_URL;
