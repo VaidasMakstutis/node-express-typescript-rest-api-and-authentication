@@ -6,6 +6,7 @@ import compression from "compression";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import router from "./router";
 
 const app = express();
 dotenv.config();
@@ -19,9 +20,14 @@ app.use(
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use("/", router());
 
-app.get("/", (req, res) => {
+app.get("/", (req: express.Request, res: express.Response) => {
   res.status(234).send("Hello World!");
+});
+
+app.get("/users", (req: express.Request, res: express.Response) => {
+  res.status(234).send("There are list of users");
 });
 
 const server = http.createServer(app);
